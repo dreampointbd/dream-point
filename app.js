@@ -82,6 +82,7 @@ function list(){
   else if (S.sort === "high") L.sort((a, b) => unit(b) - unit(a));
   else L.sort((a, b) => b.id - a.id);
   document.getElementById("list").innerHTML = cardsOrEmpty(L);
+  reveal(document.getElementById("list"));
 }
 
 /* ---------- Product ---------- */
@@ -129,6 +130,21 @@ function refresh(){
 const text = (t, body) => { app.innerHTML = `<section><div class="wrap" style="max-width:700px"><h2>${t}</h2>${body}</div></section>`; };
 function contact(){ app.innerHTML = contactBlock(); }
 
+/* ---------- Animations ---------- */
+const calm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+const io = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+}), { threshold: 0.12, rootMargin: "0px 0px -5% 0px" }) : null;
+function reveal(root){
+  if (calm) return;
+  root.querySelectorAll(".cat,.card,section h2,.why .grid > div,.wasec .wrap,.pd > div,.ctl").forEach(el => {
+    const i = Array.prototype.indexOf.call(el.parentElement.children, el);
+    el.style.setProperty("--d", Math.min(i, 5) * 0.09 + "s");
+    el.classList.add("rv");
+    io ? io.observe(el) : el.classList.add("in");
+  });
+}
+
 /* ---------- Router and footer ---------- */
 function route(){
   const [page, ...r] = location.hash.replace(/^#/, "").split("-");
@@ -141,6 +157,8 @@ function route(){
   else if (page === "terms") text("Terms and Conditions", "<p>Orders are placed through WhatsApp. An order is confirmed only after Dream Point replies and agrees on availability, price and delivery details.</p>");
   else home();
   window.scrollTo(0, 0);
+  app.classList.remove("page"); void app.offsetWidth; app.classList.add("page");
+  reveal(app);
   document.getElementById("nav").classList.remove("open");
 }
 document.getElementById("burger").onclick = e => {

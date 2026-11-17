@@ -88,3 +88,27 @@ footer h4{color:#fff;margin-bottom:8px;font-weight:500}
 footer a{display:block;padding:3px 0}
 footer .c{max-width:1100px;margin:24px auto 0;border-top:1px solid #1f3566;padding-top:14px;font-size:.85rem}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* ---------- Animations ---------- */
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.logo{animation:fade 1.2s ease both}
+.hero{position:relative}
+.hero::after{content:"";position:absolute;left:0;bottom:-3px;height:3px;width:100%;background:var(--beige);transform-origin:left;animation:grow 1.4s .5s cubic-bezier(.2,.7,.2,1) both}
+.hero{border-bottom:0}
+.hero h1,.hero p,.hero .btn{opacity:0;animation:rise 1s cubic-bezier(.2,.7,.2,1) forwards}
+.hero h1{animation-delay:.2s}
+.hero p{animation-delay:.5s}
+.hero .btn{animation-delay:.8s}
+.page{animation:fade .5s ease both}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.pic img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.card:hover .pic img{transform:scale(1.06)}
+@media(prefers-reduced-motion:reduce){
+  .logo,.hero::after,.page{animation:none}
+  .hero h1,.hero p,.hero .btn{animation:none;opacity:1}
+  .rv{opacity:1;transform:none;transition:none}
+  .pic img{transition:none}
+}
