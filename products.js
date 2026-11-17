@@ -16,7 +16,7 @@ const CATEGORIES = [
   { name: "Combo",    image: "" },
   { name: "Hoodie",   image: "" },
   { name: "Jacket",   image: "" },
-  { name: "Shirt",    image: "" }
+  { name: "special",    image: "" }
 ];
 
 // demo: true মানে এটা নমুনা। আসল প্রোডাক্ট দিলে demo: false করুন (বা লাইনটা মুছুন)।
