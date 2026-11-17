@@ -60,7 +60,7 @@ const PRODUCTS = [
     sizes: ["M", "L", "XL"], colors: ["Olive", "Black"],
     stock: false, featured: false, newArrival: false },
 
-  { id: 7, demo: true, name: "Denim Shirt", category: "Shirt",
+  { id: 7, demo: true, name: "Denim Shirt", category: "special",
     description: "Premium quality denim shirt.",
     price: 1000, discountPrice: null, image: "", images: [],
     sizes: ["M", "L", "XL"], colors: ["Blue"],
